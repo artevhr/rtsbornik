@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>РТ Английский — Шпаргалка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0e0e10;
+  --bg2: #18181c;
+  --bg3: #222228;
+  --border: #2e2e38;
+  --text: #e8e8f0;
+  --muted: #888898;
+  --accent: #6c63ff;
+  --accent2: #ff6b6b;
+  --accent3: #43e89e;
+  --accent4: #ffd166;
+  --accent5: #4ecdc4;
+  --mono: 'JetBrains Mono', monospace;
+  --head: 'Unbounded', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--mono);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.65;
+  overscroll-behavior: none;
+}
+
+/* ── NAV ── */
+.top-bar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(14,14,16,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px 6px;
+}
+.top-bar h1 {
+  font-family: var(--head);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.nav-scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 2px;
+}
+.nav-scroll::-webkit-scrollbar { display: none; }
+.nav-btn {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.nav-btn.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.nav-btn:active { transform: scale(0.95); }
+
+/* ── SECTIONS ── */
+.section { display: none; padding: 16px; }
+.section.on { display: block; }
+
+.sec-title {
+  font-family: var(--head);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+.sec-title span { color: var(--accent); }
+
+/* ── CARDS ── */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.card-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+
+/* ── TABLE ── */
+.tbl-wrap { overflow-x: auto; margin-bottom: 10px; border-radius: 10px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 400px; }
+th {
+  background: var(--bg3);
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 7px 10px;
+  text-align: left;
+  font-weight: 700;
+}
+td {
+  padding: 8px 10px;
+  border-top: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text);
+}
+tr:first-child td { border-top: none; }
+.em { color: var(--accent3); font-weight: 700; }
+.em2 { color: var(--accent4); }
+.em3 { color: var(--accent5); }
+.em4 { color: var(--accent2); }
+
+/* ── BADGE ── */
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  margin: 2px 2px 2px 0;
+  letter-spacing: 0.04em;
+}
+.b1 { background: rgba(108,99,255,0.2); color: #a09aff; }
+.b2 { background: rgba(255,107,107,0.2); color: #ff9a9a; }
+.b3 { background: rgba(67,232,158,0.2); color: #43e89e; }
+.b4 { background: rgba(255,209,102,0.2); color: #ffd166; }
+
+/* ── HINT ── */
+.hint {
+  border-left: 3px solid var(--accent);
+  background: rgba(108,99,255,0.08);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 12px;
+  margin: 10px 0;
+  font-size: 12px;
+  color: #c0bfff;
+  line-height: 1.6;
+}
+.hint.warn { border-color: var(--accent4); background: rgba(255,209,102,0.07); color: #ffe07a; }
+.hint.ok { border-color: var(--accent3); background: rgba(67,232,158,0.07); color: #7ff5c4; }
+
+/* ── OVERVIEW ITEMS ── */
+.task-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+.task-item:last-child { border-bottom: none; }
+.task-id {
+  min-width: 52px;
+  font-family: var(--head);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  padding-top: 2px;
+}
+.task-desc { font-size: 12px; line-height: 1.55; }
+
+/* ── H3 ── */
+h3 {
+  font-family: var(--head);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  margin: 16px 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── GRID 2 ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+@media(max-width:380px){ .g2 { grid-template-columns: 1fr; } }
+
+/* ── CODE ── */
+code {
+  font-family: var(--mono);
+  font-size: 11px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: var(--accent3);
+}
+
+/* ── LIST ── */
+ul { padding-left: 14px; margin-bottom: 8px; }
+li { font-size: 12px; line-height: 1.7; }
+li::marker { color: var(--accent); }
+
+/* ── PASSIVE TABLE — full width ── */
+.ptbl { min-width: 520px; }
+
+/* ── FORMULA ── */
+.formula {
+  background: var(--bg3);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent3);
+  margin: 12px 0;
+  letter-spacing: 0.03em;
+}
+
+/* ── PAIR CARD ── */
+.pair {
+  background: var(--bg3);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+.pair-word { color: var(--accent4); font-weight: 700; }
+.pair-def { color: var(--muted); font-size: 11px; margin-top: 2px; }
+.pair-ex { color: var(--text); margin-top: 3px; }
+
+/* ── SUFFIX GRID ── */
+.sfx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 7px; margin-bottom: 10px; }
+.sfx-card {
+  background: var(--bg3);
+  border-radius: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+}
+.sfx-name { color: var(--accent4); font-weight: 700; font-size: 13px; }
+.sfx-ex { color: var(--muted); font-size: 11px; margin-top: 3px; line-height: 1.5; }
+
+/* ── ERR EXAMPLE ── */
+.err-line { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+.err-line:last-child { border-bottom: none; }
+.err-num { color: var(--accent); font-weight: 700; display: inline-block; min-width: 32px; }
+.del { color: var(--accent2); text-decoration: line-through; }
+.ok { color: var(--accent3); font-weight: 700; }
+
+/* ── PROGRESS DOTS ── */
+.nav-dots {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding: 12px 0 6px;
+}
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.2s;
+}
+.dot.on { background: var(--accent); }
+
+p.sub { font-size: 12px; color: var(--muted); margin-bottom: 10px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>РТ // АНГЛИЙСКИЙ</h1>
+  <div class="nav-scroll" id="nav">
+    <button class="nav-btn on" onclick="go(0)">Обзор</button>
+    <button class="nav-btn" onclick="go(1)">Времена</button>
+    <button class="nav-btn" onclick="go(2)">Пассив</button>
+    <button class="nav-btn" onclick="go(3)">Артикли</button>
+    <button class="nav-btn" onclick="go(4)">Предлоги</button>
+    <button class="nav-btn" onclick="go(5)">Союзы</button>
+    <button class="nav-btn" onclick="go(6)">Словообр.</button>
+    <button class="nav-btn" onclick="go(7)">Слова</button>
+    <button class="nav-btn" onclick="go(8)">Ошибки</button>
+  </div>
+</div>
+
+<!-- ░░░ 0 — OVERVIEW ░░░ -->
+<div class="section on" id="s0">
+  <div class="sec-title">Структура <span>теста</span></div>
+  <p class="sub">40 заданий · 120 минут · Часть А (18) + Часть В (22)</p>
+  <div class="card">
+    <div class="task-item">
+      <div class="task-id">A1–A4</div>
+      <div class="task-desc">Вставь форму глагола в текст <span class="badge b1">Времена</span><span class="badge b4">Залог</span></div>
+    </div>
+    <div class="task-item">
+      <div class="task-id">A5</div>
+      <div class="task-desc">Артикли (the / a / –) <span class="badge b1">Артикли</span></div>
+    </div>
+    <div class="task-item">
+      <div class="task-id">A6</div>
+      <div class="task-desc">Союзы и предлоги <span class="badge b3">Союзы</span></div>
+    </div>
+    <div class="task-item">
+      <div class="task-id">A7–A8</div>
+      <div class="task-desc">Найди ошибку в подчёркнутом <span class="badge b2">Грамматика</span></div>
+    </div>
+    <div class="task-item">
+      <div class="task-id">A9–A12</div>
+      <div class="task-desc">Вставь слово по смыслу <span class="badge b4">Лексика</span></div>
+    </div>
+    <div class="task-item">
+      <div class="task-id">A13</div>
+      <div class="task-desc">Выбери подходящую реплику диалога <span class="badge b3">Диалог</span></div>
+    </div>
+    <div class="task-item">
+      <div class="task-id">A14</div>
+      <div class="task-desc">Расставь реплики A–F в правильный диалог <span class="badge b3">Диалог</span></div>
+    </div>
+    <div class="task-item">
+      <div class="task-id">A15–A18</div>
+      <div class="task-desc">Чтение текста + ответы на вопросы <span class="badge b1">Чтение</span></div>
+    </div>
+    <div class="task-item">
+      <div class="task-id">B1–B3</div>
+      <div class="task-desc">Вставь один предлог <span class="badge b1">Предлоги</span></div>
+    </div>
+    <div class="task-item">
+      <div class="task-id">B4–B6</div>
+      <div class="task-desc">Вставь одно слово по смыслу (≤15 букв) <span class="badge b4">Лексика</span></div>
+    </div>
+    <div class="task-item">
+      <div class="task-id">B7–B8</div>
+      <div class="task-desc">Одно слово для двух предложений <span class="badge b4">Лексика</span></div>
+    </div>
+    <div class="task-item">
+      <div class="task-id">B9–B18</div>
+      <div class="task-desc">Лишнее слово в каждой строке <span class="badge b2">Ошибки</span></div>
+    </div>
+    <div class="task-item" style="border:none">
+      <div class="task-id">B19–B22</div>
+      <div class="task-desc">Образуй нужную форму слова из скобок <span class="badge b3">Словообр.</span></div>
+    </div>
+  </div>
+  <div class="hint ok">Сначала делай B19–B22 (механически) и A15–A18 (факты из текста). Потом времена — там большинство баллов.</div>
+</div>
+
+<!-- ░░░ 1 — TENSES ░░░ -->
+<div class="section" id="s1">
+  <div class="sec-title">Времена <span>глагола</span></div>
+  <p class="sub">Активный залог. A1–A4: смотри на маркерные слова!</p>
+
+  <h3>Настоящее</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Время</th><th>Форма</th><th>Маркеры</th></tr>
+    <tr><td><span class="em">Pres. Simple</span></td><td>work / works</td><td class="em2">always, usually, often, never, every day, as a rule</td></tr>
+    <tr><td><span class="em">Pres. Continuous</span></td><td>am/is/are working</td><td class="em2">now, at the moment, right now, still, look!, listen!</td></tr>
+    <tr><td><span class="em">Pres. Perfect</span></td><td>have/has worked</td><td class="em2">already, just, yet, ever, never, recently, for, since</td></tr>
+    <tr><td><span class="em">Pres. Perf. Cont.</span></td><td>have/has been working</td><td class="em2">for, since, how long, all day, all morning</td></tr>
+  </table>
+  </div>
+
+  <h3>Прошедшее</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Время</th><th>Форма</th><th>Маркеры</th></tr>
+    <tr><td><span class="em">Past Simple</span></td><td>worked / went</td><td class="em2">yesterday, ago, last week, in 1995, then, when</td></tr>
+    <tr><td><span class="em">Past Continuous</span></td><td>was/were working</td><td class="em2">while, when (+ past), at 5 o'clock yesterday, all evening</td></tr>
+    <tr><td><span class="em">Past Perfect</span></td><td>had worked</td><td class="em2">before, after, by the time, when (= раньше)</td></tr>
+    <tr><td><span class="em">Past Perf. Cont.</span></td><td>had been working</td><td class="em2">for, since (+ Past Simple)</td></tr>
+  </table>
+  </div>
+
+  <h3>Будущее</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Форма</th><th>Когда?</th><th>Пример</th></tr>
+    <tr><td><span class="em">will + V</span></td><td>спонтанное решение, предсказание</td><td>I'll help you. It will rain.</td></tr>
+    <tr><td><span class="em">going to + V</span></td><td>запланировано заранее или видны признаки</td><td>I'm going to visit her. Look — it's going to fall!</td></tr>
+    <tr><td><span class="em">am/is/are + Ving</span></td><td>договорённость на конкретный момент</td><td>I'm meeting him at 5 tomorrow.</td></tr>
+    <tr><td><span class="em">Pres. Simple</span></td><td>расписание, официальные события</td><td>The train leaves at 8.</td></tr>
+  </table>
+  </div>
+
+  <div class="hint warn">⚠ После <code>when, if, before, after, as soon as, until</code> — ставь <strong>Present Simple</strong>, не Future!<br>Пример: When she <strong>arrives</strong>, I'll call you. ✓</div>
+
+  <h3>Глаголы без Continuous</h3>
+  <p class="sub">Эти глаголы = состояние, не действие. Всегда Simple:</p>
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">Чувства</div>
+      like, love, hate, prefer, want, wish, care, need
+    </div>
+    <div class="card">
+      <div class="card-title">Мышление</div>
+      know, believe, understand, remember, forget, mean, think (= считать)
+    </div>
+    <div class="card">
+      <div class="card-title">Восприятие</div>
+      see, hear, smell, taste, notice
+    </div>
+    <div class="card">
+      <div class="card-title">Обладание</div>
+      have (= иметь), belong, own, possess
+    </div>
+  </div>
+  <div class="hint"><span style="color:var(--accent2)">✗ I am knowing</span> → <span style="color:var(--accent3)">✓ I know</span><br><span style="color:var(--accent2)">✗ She is liking</span> → <span style="color:var(--accent3)">✓ She likes</span></div>
+</div>
+
+<!-- ░░░ 2 — PASSIVE ░░░ -->
+<div class="section" id="s2">
+  <div class="sec-title">Пассивный <span>залог</span></div>
+  <p class="sub">Когда действие совершают над подлежащим.</p>
+  <div class="formula">be (нужное время) + V3</div>
+  <div class="tbl-wrap">
+  <table class="ptbl">
+    <tr><th>Время</th><th>Пассивная форма</th><th>Пример</th></tr>
+    <tr><td>Pres. Simple</td><td class="em">is/are + V3</td><td>Cars <em class="em">are made</em> here.</td></tr>
+    <tr><td>Past Simple</td><td class="em">was/were + V3</td><td>It <em class="em">was written</em> in 1990.</td></tr>
+    <tr><td>Future Simple</td><td class="em">will be + V3</td><td>It <em class="em">will be sent</em> tomorrow.</td></tr>
+    <tr><td>Pres. Continuous</td><td class="em">is/are being + V3</td><td>It <em class="em">is being built</em> now.</td></tr>
+    <tr><td>Past Continuous</td><td class="em">was/were being + V3</td><td>Road <em class="em">was being repaired</em>.</td></tr>
+    <tr><td>Pres. Perfect</td><td class="em">has/have been + V3</td><td>Work <em class="em">has been finished</em>.</td></tr>
+    <tr><td>Past Perfect</td><td class="em">had been + V3</td><td>It <em class="em">had been sent</em>.</td></tr>
+    <tr><td>Modal</td><td class="em">modal + be + V3</td><td>It <em class="em">must be done</em>.</td></tr>
+  </table>
+  </div>
+  <div class="hint warn">⚠ Частая ловушка: <code>was walking</code> (активный Past Cont.) vs <code>was walked</code> (пассив). Смотри — есть ли объект действия!</div>
+  <h3>Активный vs Пассивный</h3>
+  <div class="card">
+    <div style="margin-bottom:8px">
+      <span class="badge b3">Активный</span>
+      The dog <span class="em">bit</span> the man. — собака сама кусает
+    </div>
+    <div>
+      <span class="badge b1">Пассивный</span>
+      The man <span class="em">was bitten</span> by the dog. — над человеком совершили действие
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ 3 — ARTICLES ░░░ -->
+<div class="section" id="s3">
+  <div class="sec-title">Артикли <span>A5</span></div>
+
+  <div class="card">
+    <div class="card-title" style="color:#a09aff">A — Неопределённый</div>
+    <ul>
+      <li>Первое упоминание: <em class="em2">I saw <strong>a</strong> girl.</em></li>
+      <li>Профессия: <em class="em2">She is <strong>a</strong> teacher.</em></li>
+      <li>Один из многих: <em class="em2">Give me <strong>a</strong> pen.</em></li>
+      <li>После <code>such, what, quite, rather, as</code>:<br><em class="em2">What <strong>a</strong> lovely day!</em></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:#43e89e">THE — Определённый</div>
+    <ul>
+      <li>Повтор: <em class="em2">I saw <strong>a</strong> girl. <strong>The</strong> girl smiled.</em></li>
+      <li>Единственный: <em class="em2"><strong>the</strong> sun, moon, earth, sky</em></li>
+      <li>Уточнение: <em class="em2"><strong>the</strong> book on the table</em></li>
+      <li>Горные хребты: <em class="em2"><strong>the</strong> Alps, the Urals</em></li>
+      <li>Реки/моря/океаны: <em class="em2"><strong>the</strong> Volga, the Black Sea</em></li>
+      <li>Части суток (in): <em class="em2">in <strong>the</strong> morning/evening</em></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:#ffd166">– Нулевой артикль</div>
+    <ul>
+      <li>Страны/города: <em class="em2">Belarus, Minsk</em></li>
+      <li>Языки, спорт: <em class="em2">English, football</em></li>
+      <li>Абстрактные понятия в общем: <em class="em2">Water is life.</em></li>
+      <li>Дни, месяцы: <em class="em2">on Monday, in May</em></li>
+      <li>Транспорт с by: <em class="em2">by bus, by car, by train</em></li>
+      <li>at home/school/work/hospital</li>
+    </ul>
+  </div>
+
+  <h3>Фразы — учи наизусть</h3>
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">С A</div>
+      <div style="font-size:11px;line-height:2;color:var(--muted)">
+        as a rule<br>in a hurry<br>have a rest<br>make a mistake<br>once a week<br>have a good time<br>at a glance<br>tell a lie
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">С THE</div>
+      <div style="font-size:11px;line-height:2;color:var(--muted)">
+        by the way<br>on the whole<br>at the moment<br>in the morning<br>tell the truth<br>on the other hand<br>the other day<br>make the most of
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ 4 — PREPOSITIONS ░░░ -->
+<div class="section" id="s4">
+  <div class="sec-title">Предлоги <span>B1–B3</span></div>
+  <p class="sub">Нужно одно слово — предлог. Учи устойчивые сочетания.</p>
+
+  <h3>Время</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Предлог</th><th>Когда</th><th>Пример</th></tr>
+    <tr><td class="em">at</td><td>точное время, праздники</td><td class="em2">at 5 o'clock, at night, at Christmas</td></tr>
+    <tr><td class="em">on</td><td>дни, даты</td><td class="em2">on Monday, on the 5th, on my birthday</td></tr>
+    <tr><td class="em">in</td><td>месяцы, годы, сезоны, части суток</td><td class="em2">in May, in 2020, in summer, in the morning</td></tr>
+    <tr><td class="em">for</td><td>продолжительность</td><td class="em2">for two hours, for a week</td></tr>
+    <tr><td class="em">since</td><td>с момента</td><td class="em2">since 2010, since Monday</td></tr>
+    <tr><td class="em">by</td><td>не позднее чем</td><td class="em2">by Friday, by 5 o'clock</td></tr>
+    <tr><td class="em">until</td><td>до момента</td><td class="em2">until Monday, till 9pm</td></tr>
+  </table>
+  </div>
+
+  <h3>Место</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Предлог</th><th>Пример</th></tr>
+    <tr><td class="em">at</td><td>at home, at school, at the station, at the top</td></tr>
+    <tr><td class="em">in</td><td>in the room, in Belarus, in the city centre</td></tr>
+    <tr><td class="em">on</td><td>on the table, on the wall, on the left/right</td></tr>
+    <tr><td class="em">between</td><td>между двумя: between A and B</td></tr>
+    <tr><td class="em">among</td><td>среди многих: among the trees</td></tr>
+  </table>
+  </div>
+
+  <h3>Глагол + предлог — наизусть</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Сочетание</th><th>Значение</th></tr>
+    <tr><td class="em">cure <strong>for</strong></td><td>лекарство от</td></tr>
+    <tr><td class="em">addicted <strong>to</strong></td><td>зависимый от</td></tr>
+    <tr><td class="em">result <strong>in</strong></td><td>приводить к (следствие)</td></tr>
+    <tr><td class="em">result <strong>from</strong></td><td>быть результатом</td></tr>
+    <tr><td class="em">suffer <strong>from</strong></td><td>страдать от</td></tr>
+    <tr><td class="em">responsible <strong>for</strong></td><td>ответственный за</td></tr>
+    <tr><td class="em">interested <strong>in</strong></td><td>заинтересованный в</td></tr>
+    <tr><td class="em">good <strong>at</strong></td><td>хорошо уметь</td></tr>
+    <tr><td class="em">depend <strong>on</strong></td><td>зависеть от</td></tr>
+    <tr><td class="em">agree <strong>with</strong></td><td>соглашаться с</td></tr>
+    <tr><td class="em">arrive <strong>in</strong> (город)</td><td>прибыть в город</td></tr>
+    <tr><td class="em">arrive <strong>at</strong> (место)</td><td>прибыть на место</td></tr>
+    <tr><td class="em">proud <strong>of</strong></td><td>гордиться чем-то</td></tr>
+    <tr><td class="em">afraid <strong>of</strong></td><td>бояться</td></tr>
+    <tr><td class="em">familiar <strong>with</strong></td><td>знаком с</td></tr>
+  </table>
+  </div>
+  <div class="hint ok">Из твоего теста: "no cure <strong>for</strong>" → for; "addicted <strong>to</strong> the Internet" → to; "resulted <strong>in</strong> floods" → in</div>
+</div>
+
+<!-- ░░░ 5 — CONNECTORS ░░░ -->
+<div class="section" id="s5">
+  <div class="sec-title">Союзы <span>A6, B4–B6</span></div>
+
+  <h3>Противопоставление</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Слово</th><th>После чего?</th></tr>
+    <tr><td class="em">although / though / even though</td><td>+ подлежащее + сказуемое<br><span class="em2">Although it was cold, she went out.</span></td></tr>
+    <tr><td class="em">in spite of / despite</td><td>+ noun или -ing<br><span class="em2">Despite the rain, we played.</span></td></tr>
+    <tr><td class="em">however / nevertheless</td><td>в начале предложения + запятая<br><span class="em2">It was cold. However, she went out.</span></td></tr>
+  </table>
+  </div>
+
+  <h3>Причина и следствие</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Слово</th><th>После чего?</th></tr>
+    <tr><td class="em">because / as / since</td><td>+ подлежащее + сказуемое<br><span class="em2">I left because I was tired.</span></td></tr>
+    <tr><td class="em">because of / due to</td><td>+ noun или -ing<br><span class="em2">He left because of the noise.</span></td></tr>
+    <tr><td class="em">so / therefore / that's why</td><td>следствие<br><span class="em2">She was tired, so she left.</span></td></tr>
+  </table>
+  </div>
+
+  <h3>Время</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Союз</th><th>Значение</th></tr>
+    <tr><td class="em">when</td><td>когда</td></tr>
+    <tr><td class="em">while / as</td><td>в то время как (одновременно)</td></tr>
+    <tr><td class="em">after / before</td><td>после / до</td></tr>
+    <tr><td class="em">until / till</td><td>пока не</td></tr>
+    <tr><td class="em">as soon as</td><td>как только</td></tr>
+    <tr><td class="em">by the time</td><td>к тому времени как</td></tr>
+  </table>
+  </div>
+
+  <h3>Ловушки — часто путают</h3>
+  <div class="pair">
+    <div class="pair-word">although vs in spite of</div>
+    <div class="pair-def">although + предложение&nbsp;&nbsp;|&nbsp;&nbsp;in spite of + noun/-ing</div>
+    <div class="pair-ex">Although it rained / In spite of the rain</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">because vs because of</div>
+    <div class="pair-def">because + предложение&nbsp;&nbsp;|&nbsp;&nbsp;because of + noun/-ing</div>
+    <div class="pair-ex">because he was late / because of his lateness</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">so vs such</div>
+    <div class="pair-def">so + adjective&nbsp;&nbsp;|&nbsp;&nbsp;such + (a) + noun</div>
+    <div class="pair-ex">so cold / such a cold day</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">since vs for</div>
+    <div class="pair-def">since + точка во времени&nbsp;&nbsp;|&nbsp;&nbsp;for + промежуток</div>
+    <div class="pair-ex">since 2010 / for 3 years</div>
+  </div>
+  <div class="hint ok">A6 из твоего теста: "no reason to take taxi ... his office was near" → <strong>since/as/because</strong> (нет noun после, значит не because of)</div>
+</div>
+
+<!-- ░░░ 6 — WORD FORMATION ░░░ -->
+<div class="section" id="s6">
+  <div class="sec-title">Словообразование <span>B19–B22</span></div>
+  <p class="sub">Дано слово в скобках — измени форму. Смотри на роль в предложении.</p>
+
+  <h3>Суффиксы существительных (от глаголов)</h3>
+  <div class="sfx-grid">
+    <div class="sfx-card"><div class="sfx-name">-tion/-sion</div><div class="sfx-ex">decide→decision<br>inform→information</div></div>
+    <div class="sfx-card"><div class="sfx-name">-ment</div><div class="sfx-ex">develop→development<br>agree→agreement</div></div>
+    <div class="sfx-card"><div class="sfx-name">-ance/-ence</div><div class="sfx-ex">perform→performance<br>differ→difference</div></div>
+    <div class="sfx-card"><div class="sfx-name">-al</div><div class="sfx-ex">arrive→arrival<br>remove→removal</div></div>
+  </div>
+
+  <h3>Суффиксы существительных (от прилагательных)</h3>
+  <div class="sfx-grid">
+    <div class="sfx-card"><div class="sfx-name">-ness</div><div class="sfx-ex">dark→darkness<br>kind→kindness</div></div>
+    <div class="sfx-card"><div class="sfx-name">-ity/-ty</div><div class="sfx-ex">popular→popularity<br>able→ability</div></div>
+  </div>
+
+  <h3>Суффиксы прилагательных</h3>
+  <div class="sfx-grid">
+    <div class="sfx-card"><div class="sfx-name">-ful (есть)</div><div class="sfx-ex">care→careful<br>help→helpful</div></div>
+    <div class="sfx-card"><div class="sfx-name">-less (нет)</div><div class="sfx-ex">care→careless<br>help→helpless</div></div>
+    <div class="sfx-card"><div class="sfx-name">-ous</div><div class="sfx-ex">danger→dangerous<br>fame→famous</div></div>
+    <div class="sfx-card"><div class="sfx-name">-ive</div><div class="sfx-ex">attract→attractive<br>support→supportive</div></div>
+    <div class="sfx-card"><div class="sfx-name">-able/-ible</div><div class="sfx-ex">comfort→comfortable<br>break→breakable</div></div>
+    <div class="sfx-card"><div class="sfx-name">-al</div><div class="sfx-ex">tradition→traditional<br>practice→practical</div></div>
+    <div class="sfx-card"><div class="sfx-name">-ic</div><div class="sfx-ex">energy→energetic</div></div>
+    <div class="sfx-card"><div class="sfx-name">-y</div><div class="sfx-ex">rain→rainy<br>cloud→cloudy</div></div>
+    <div class="sfx-card"><div class="sfx-name">-ly</div><div class="sfx-ex">friend→friendly<br>week→weekly</div></div>
+  </div>
+
+  <h3>Отрицательные префиксы</h3>
+  <div class="sfx-grid">
+    <div class="sfx-card"><div class="sfx-name">un-</div><div class="sfx-ex">happy→unhappy<br>lucky→unlucky</div></div>
+    <div class="sfx-card"><div class="sfx-name">im-</div><div class="sfx-ex">possible→impossible<br>patient→impatient</div></div>
+    <div class="sfx-card"><div class="sfx-name">in-</div><div class="sfx-ex">correct→incorrect<br>formal→informal</div></div>
+    <div class="sfx-card"><div class="sfx-name">ir-</div><div class="sfx-ex">regular→irregular</div></div>
+    <div class="sfx-card"><div class="sfx-name">il-</div><div class="sfx-ex">legal→illegal<br>logical→illogical</div></div>
+    <div class="sfx-card"><div class="sfx-name">dis-</div><div class="sfx-ex">agree→disagree<br>honest→dishonest</div></div>
+  </div>
+
+  <h3>Глагольный суффикс -en</h3>
+  <div class="card" style="font-size:12px">
+    strong→<span class="em">strengthen</span>&nbsp; · &nbsp;deep→<span class="em">deepen</span>&nbsp; · &nbsp;wide→<span class="em">widen</span>&nbsp; · &nbsp;short→<span class="em">shorten</span>&nbsp; · &nbsp;hard→<span class="em">harden</span>&nbsp; · &nbsp;dark→<span class="em">darken</span>
+  </div>
+
+  <h3>Пример из твоего теста</h3>
+  <div class="card" style="font-size:12px;line-height:2">
+    B19 <span class="badge b4">FAIR</span> → "a <span class="em">fairly</span> common problem" (наречие, +ly)<br>
+    B20 <span class="badge b4">SUPPORT</span> → "schools <span class="em">supportive</span>" (прилаг., +ive)<br>
+    B21 <span class="badge b4">DECIDE</span> → "many <span class="em">decisions</span>" (сущ., +sion)<br>
+    B22 <span class="badge b4">STRENGTH</span> → "<span class="em">strengthen</span> ties" (глагол, +en)
+  </div>
+</div>
+
+<!-- ░░░ 7 — VOCAB ░░░ -->
+<div class="section" id="s7">
+  <div class="sec-title">Путаемые <span>слова</span></div>
+  <p class="sub">A9–A12, B4–B6, B7–B8. B7–B8: одно слово = два предложения.</p>
+
+  <h3>say / tell / talk / speak</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Слово</th><th>Как использовать</th><th>Пример</th></tr>
+    <tr><td class="em">say</td><td>говорить что (без лица)</td><td>She <em class="em">said</em> she was tired.</td></tr>
+    <tr><td class="em">tell</td><td>говорить кому (+ человек)</td><td><em class="em">Tell</em> me the truth.</td></tr>
+    <tr><td class="em">talk</td><td>разговаривать (беседа)</td><td>We <em class="em">talked</em> for hours.</td></tr>
+    <tr><td class="em">speak</td><td>говорить (язык, официально)</td><td>Can you <em class="em">speak</em> English?</td></tr>
+  </table>
+  </div>
+
+  <h3>see / look / watch</h3>
+  <div class="pair">
+    <div class="pair-word">see</div>
+    <div class="pair-def">видеть непроизвольно</div>
+    <div class="pair-ex">I can see the mountains from here.</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">look (at)</div>
+    <div class="pair-def">смотреть специально, направлять взгляд</div>
+    <div class="pair-ex">Look at that bird!</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">watch</div>
+    <div class="pair-def">наблюдать за процессом во времени</div>
+    <div class="pair-ex">We watched the match.</div>
+  </div>
+
+  <h3>hear / listen to</h3>
+  <div class="pair">
+    <div class="pair-word">hear</div>
+    <div class="pair-def">слышать непроизвольно</div>
+    <div class="pair-ex">I can't hear anything — too noisy.</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">listen to</div>
+    <div class="pair-def">слушать специально, внимательно</div>
+    <div class="pair-ex">I listen to music every evening.</div>
+  </div>
+
+  <h3>bring / take / fetch</h3>
+  <div class="pair">
+    <div class="pair-word">bring</div>
+    <div class="pair-def">принести → сюда (к собеседнику)</div>
+    <div class="pair-ex">Bring me some water, please.</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">take</div>
+    <div class="pair-def">унести → туда (от собеседника)</div>
+    <div class="pair-ex">Take this letter to the post office.</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">fetch</div>
+    <div class="pair-def">сходить и принести</div>
+    <div class="pair-ex">Could you fetch the kids from school?</div>
+  </div>
+
+  <h3>do / make</h3>
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">DO = выполнять</div>
+      <div style="font-size:11px;line-height:1.9;color:var(--muted)">do homework<br>do the washing<br>do housework<br>do business<br>do your best<br>do damage</div>
+    </div>
+    <div class="card">
+      <div class="card-title">MAKE = создавать</div>
+      <div style="font-size:11px;line-height:1.9;color:var(--muted)">make a mistake<br>make a decision<br>make a phone call<br>make money<br>make noise<br>make an effort</div>
+    </div>
+  </div>
+
+  <h3>Другие ловушки</h3>
+  <div class="pair">
+    <div class="pair-word">lend vs borrow</div>
+    <div class="pair-def">lend = давать взаймы (→)&nbsp;&nbsp;|&nbsp;&nbsp;borrow = брать взаймы (←)</div>
+    <div class="pair-ex">Can I <em class="em">borrow</em> your pen? — Sure, I'll <em class="em">lend</em> it to you.</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">forget vs leave</div>
+    <div class="pair-def">forget = забыть факт&nbsp;&nbsp;|&nbsp;&nbsp;leave = оставить где-то</div>
+    <div class="pair-ex">I <em class="em">left</em> my phone at home. (не "forgot my phone at home")</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">rise vs raise</div>
+    <div class="pair-def">rise = подниматься само&nbsp;&nbsp;|&nbsp;&nbsp;raise = поднимать что-то</div>
+    <div class="pair-ex">Prices <em class="em">rose</em>. She <em class="em">raised</em> her hand.</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">still / yet / already</div>
+    <div class="pair-def">still = всё ещё&nbsp;&nbsp;|&nbsp;&nbsp;yet = ещё (вопрос/отриц.)&nbsp;&nbsp;|&nbsp;&nbsp;already = уже</div>
+    <div class="pair-ex">He's <em class="em">still</em> sleeping. Have you finished <em class="em">yet</em>? I've <em class="em">already</em> eaten.</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">interested vs interesting</div>
+    <div class="pair-def">interested = я заинтересован (состояние субъекта)</div>
+    <div class="pair-ex">I'm <em class="em">interested</em> in art. / This book is <em class="em">interesting</em>.</div>
+  </div>
+  <div class="pair">
+    <div class="pair-word">hard vs hardly</div>
+    <div class="pair-def">hard = усердно / твёрдо&nbsp;&nbsp;|&nbsp;&nbsp;hardly = едва, почти не</div>
+    <div class="pair-ex">He works <em class="em">hard</em>. He <em class="em">hardly</em> works. (значения противоположные!)</div>
+  </div>
+</div>
+
+<!-- ░░░ 8 — ERRORS ░░░ -->
+<div class="section" id="s8">
+  <div class="sec-title">Поиск <span>ошибок</span></div>
+  <p class="sub">A7–A8: подчёркнуты 5 фрагментов — один с ошибкой. B9–B18: в строке одно лишнее слово.</p>
+
+  <h3>Типичные ошибки A7–A8</h3>
+  <div class="card">
+    <div class="err-line"><span class="err-num">Тип 1</span> Неправильная сравнительная степень:<br><span class="del">much easily</span> → <span class="ok">more easily</span></div>
+    <div class="err-line"><span class="err-num">Тип 2</span> money/information несчитаемые:<br><span class="del">only a few money</span> → <span class="ok">little money</span></div>
+    <div class="err-line"><span class="err-num">Тип 3</span> Двойная сравнительная:<br><span class="del">more better</span> → <span class="ok">better</span></div>
+    <div class="err-line"><span class="err-num">Тип 4</span> every только с ед. числом:<br><span class="del">every heavy doors</span> → <span class="ok">all heavy doors</span></div>
+    <div class="err-line" style="border:none"><span class="err-num">Тип 5</span> Лишнее вспом. слово:<br><span class="del">is coming behind</span> → <span class="ok">comes behind</span></div>
+  </div>
+
+  <h3>Стратегия B9–B18: лишнее слово</h3>
+  <div class="hint">В каждой строке ровно 1 лишнее слово. Читай строку и спрашивай: без какого слова грамматически правильно?</div>
+
+  <div class="card">
+    <div class="card-title">Что бывает лишним</div>
+    <ul>
+      <li>Лишний артикль: <span class="del">for an example</span> → for example</li>
+      <li>Лишнее местоимение или союз внутри</li>
+      <li>Лишний предлог: <span class="del">discussed about it</span> → discussed it</li>
+      <li>Лишнее <code>more</code>: <span class="del">more better</span> → better</li>
+      <li>Лишний <code>be</code>: <span class="del">anyone is coming</span> → anyone coming</li>
+      <li>Лишнее <code>which/that</code> без глагола</li>
+      <li>Двойное отрицание: <span class="del">don't know nothing</span> → don't know anything</li>
+    </ul>
+  </div>
+
+  <h3>Примеры из твоего теста</h3>
+  <div class="card" style="font-size:12px">
+    <div class="err-line"><span class="err-num">B11</span>"For <span class="del">an</span> example" → лишнее <span class="ok">an</span></div>
+    <div class="err-line"><span class="err-num">B12</span>"anyone <span class="del">is</span> coming behind me" → лишнее <span class="ok">is</span></div>
+    <div class="err-line"><span class="err-num">B13</span>"<span class="del">every</span> heavy doors" → лишнее <span class="ok">every</span></div>
+    <div class="err-line"><span class="err-num">B14</span>"litter <span class="del">which</span> in the street" → лишнее <span class="ok">which</span></div>
+    <div class="err-line" style="border:none"><span class="err-num">B18</span>"a <span class="del">more</span> better place" → лишнее <span class="ok">more</span></div>
+  </div>
+
+  <h3>A15–A18: стратегия чтения</h3>
+  <div class="hint ok">
+    1. Сначала прочти вопросы (A15–A18), потом читай текст целенаправленно.<br>
+    2. Ответ всегда в тексте — не думай "логически".<br>
+    3. Исключай варианты, которых нет в тексте.<br>
+    4. Ложные варианты часто используют слова из текста, но с другим смыслом.
+  </div>
+</div>
+
+<div class="nav-dots" id="dots"></div>
+
+<script>
+const SECTIONS = ['s0','s1','s2','s3','s4','s5','s6','s7','s8'];
+const LABELS = ['Обзор','Времена','Пассив','Артикли','Предлоги','Союзы','Словообр.','Слова','Ошибки'];
+let cur = 0;
+
+const dotsEl = document.getElementById('dots');
+SECTIONS.forEach((_,i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' on':'');
+  d.id = 'dot'+i;
+  dotsEl.appendChild(d);
+});
+
+function go(idx){
+  document.getElementById(SECTIONS[cur]).classList.remove('on');
+  document.querySelectorAll('.nav-btn')[cur].classList.remove('on');
+  document.getElementById('dot'+cur).classList.remove('on');
+  cur = idx;
+  document.getElementById(SECTIONS[cur]).classList.add('on');
+  document.querySelectorAll('.nav-btn')[cur].classList.add('on');
+  document.getElementById('dot'+cur).classList.add('on');
+  window.scrollTo({top:0, behavior:'instant'});
+  const btn = document.querySelectorAll('.nav-btn')[cur];
+  btn.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+}
+</script>
+</body>
+</html>
